@@ -63,7 +63,7 @@ Why 3 Microservice:
   * Driver and Passenger will focus on functions like Creating, Updating and Getting their personnal details. 
   * Trips will focus on Requesting of trip, Assigning trip and both start and end trips. 
   * This allows each area of focus to be seperated in case if one microservice is required to be shut down for enhancement or errors the other microservices can still operate thus ensuring user experience from the running microservices. 
-  * Example: If Trips microservice is shutdown, Driver and Passenger microservice will still allow the users to create profiles, update and get personnal details. 
+  * Example: If Trips microservice is shutdown, Driver and Passenger microservice will still allow the users to create  profiles, update and get personnal details. 
 
 <p align="left">(<a href="#top">back to top</a>)</p>
 
