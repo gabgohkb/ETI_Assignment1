@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Driver Create Account</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <form class="CreateDriver" onsubmit='return sm(this)'>
+        <label for="fer">First Name</label>
+        <input type="text" name="fn" id="fn">
+
+        <label for="ler">Last Name</label>
+        <input type="text" name="ln" id="ln">
+
+        <label for="MB">MobileNo</label>
+        <input type="text" name="mn" id="mn">
+
+        <label for="email">Email Address</label>
+        <input type="text" name="ea" id="ea">
+
+        <label for="CL">Car License No</label>
+        <input type="text" name="cln" id="cln">
+
+        <label for="id">Identification No</label>
+        <input type="text" name="idno" id="idno">
+
+        <button type="submit">Create</button>
+    </form>
+    <div id="response"> 
+
+    </div>
+</body>
+<script>
+    function sm(form){
+        event.preventDefault(); 
+        const data = new FormData(form);
+        const pass = JSON.stringify(Object.fromEntries(data));
+        console.log(pass)
+        $.ajax({
+        type: "POST",
+        url: "http://localhost:5050/Drivers/create",
+        data: pass,
+        contentType: "application/json",
+        success: function (response, textStatus) {
+            console.log(response)
+            document.getElementById("response").innerHTML = response;
+        },
+        error: function (textStatus, errorThrown) {
+            console.log(errorThrown)
+            document.getElementById("response").innerHTML = errorThrown;
+        }
+    });
+        return false; 
+    }
+</script>
+</html>

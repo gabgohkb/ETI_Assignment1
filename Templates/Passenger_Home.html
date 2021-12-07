@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Passenger home</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+<body>
+    <div class="Login as Passenger">
+        <label>Login as passenger</label>
+        <input type="text" name="PID" id="pid">
+        <input type="button" value="LOGIN" onclick="login();">
+    </div>
+    <div id="personalDetail">
+    </div>
+    <div>
+    <h1>Update Passenger</h1>
+    <label>ID</label>
+    <input type="text" name="PID" id="updatepid">
+    <form class="UpdatePassenger" onsubmit='return sm(this)'>
+        <label for="fer">First Name</label>
+        <input type="text" name="fn" id="fer">
+
+        <label for="ler">Last Name</label>
+        <input type="text" name="ln" id="ler">
+
+        <label for="MB">MobileNo</label>
+        <input type="text" name="mn" id="MB">
+
+        <label for="email">Email Address</label>
+        <input type="text" name="ea" id="email">
+
+        <button type="submit">Update</button>
+    </form>
+</div>
+<div class="Delete Passenger">
+    <h1>Delete Passenger</h1>
+    <label>ID</label>
+    <input type="text" name="PID" id="deletepid">
+    <input type="button" value="DEL" onclick="DEL();">
+</div>
+<div class="Request Trip">
+    <h1>Trips</h1>
+    <label>ID</label>
+    <input type="text" name="PID" id="trippid">
+    <form class="UpdatePassenger" onsubmit='return requestTRIP(this)'>
+        <label for="spc">Start Postal Code</label>
+        <input type="text" name="startpc" id="spc">
+
+        <label for="epc">End Postal Code</label>
+        <input type="text" name="endpc" id="spc">
+
+        <label for="ts">DateTime</label>
+        <input readonly type="text" name="timestamp" id="ts">
+
+        <button type="submit">Request Trip</button>
+    </form>
+    <div id="currentdate"></div>
+</div>
+<div id="response"> 
+
+</div>
+</body>
+<script>
+    n = new Date();
+        y = n.getFullYear();
+        m = n.getMonth() + 1;
+        d = n.getDate();
+        h = n.getHours(); 
+        min = n.getMinutes();
+        sec = n.getSeconds();
+        var ts = y + "-" + m + "-" + d + " "+h+":"+min+":"+sec;
+        document.getElementById("ts").value = ts;
+    function requestTRIP(form){
+        var pid = $("#trippid").val()
+        event.preventDefault(); 
+        const data = new FormData(form);
+        const pass = JSON.stringify(Object.fromEntries(data));
+        console.log(pass)
+        $.ajax({
+        type: "POST",
+        url: "http://localhost:5080/Passengers/"+pid+"/Trip",
+        data: pass,
+        contentType: "application/json",
+        success: function (response, textStatus) {
+            console.log(response);
+            document.getElementById("response").innerHTML = response;
+        },
+        error: function (textStatus, errorThrown) {
+            console.log(textStatus.responseText)
+            document.getElementById("response").innerHTML = textStatus.responseText;
+        }
+    });
+        return false; 
+    }
+        function DEL(){
+        var pid = $("#deletepid").val()
+        console.log(pid)
+        $.ajax({
+        type: "DELETE",
+        url: "http://localhost:5000/Passengers/"+pid,
+        success: function (response, textStatus) {
+            console.log(response,textStatus);
+            document.getElementById("response").innerHTML = response;
+        },
+        error: function (textStatus, errorThrown) {
+            console.log(textStatus.responseText);
+            document.getElementById("response").innerHTML =textStatus.responseText;
+        }
+    });
+        return false; 
+    }
+    function sm(form){
+        var pid = $("#updatepid").val()
+        event.preventDefault(); 
+        const data = new FormData(form);
+        const pass = JSON.stringify(Object.fromEntries(data));
+        console.log(pass)
+        $.ajax({
+        type: "PUT",
+        url: "http://localhost:5000/Passengers/"+pid,
+        data: pass,
+        contentType: "application/json",
+        success: function (response, textStatus) {
+            console.log(response);
+            document.getElementById("response").innerHTML = response;
+        },
+        error: function (textStatus, errorThrown) {
+            console.log(textStatus.responseText)
+            document.getElementById("response").innerHTML = textStatus.responseText;
+        }
+    });
+        return false; 
+    }
+    function login(){
+        var pid = $("#pid").val()
+        console.log(pid)
+        $.ajax({
+        type: "GET",
+        url: "http://localhost:5000/Passengers/"+pid,
+        success: function (response, textStatus) {
+            console.log(response,textStatus);
+            document.getElementById("response").innerHTML = response;
+            build(response);
+        },
+        error: function (textStatus, errorThrown) {
+            console.log(textStatus.responseText);
+            document.getElementById("response").innerHTML = textStatus.responseText;
+        }
+    });
+        return false; 
+    }
+    function build(data){
+        var dataparsed = JSON.parse(data)
+        console.log(dataparsed)
+        var row =   `<tr>
+                        <td>${dataparsed.ID}</td>
+                        <td>${dataparsed.FirstName}</td>
+                        <td>${dataparsed.LastName}</td>
+                        <td>${dataparsed.MobileNo}</td>
+                        <td>${dataparsed.EmailAddr}</td>
+                        <td>${dataparsed.OnRide}</td>
+                    </tr>`
+        document.getElementById('personalDetail').innerHTML=row;
+    }
+</script>
+</html>
