@@ -25,9 +25,6 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Account page for sign up and sign in.
-[![Account_Screen_Shot][account-screenshot]]
-
 Passenger page for getting current status, viewing trips and requesting for trips.
 [![Passenger_Screen_Shot][passenger-screenshot]]
 
@@ -71,9 +68,9 @@ Why 3 Microservice:
 <p align="left">(<a href="#top">back to top</a>)</p>
 
 To better understand, below is a diagram of the assignment's structure and how communications are made.
+[![ArchitectureDiagram-screenshot][architecturediagram-screenshot]]
+[![ArchitectureDiagramEach-screenshot][architecturediagrameach-screenshot]]
 
-[ArchitectureDiagram-screenshot]: images\ArchitectureDiagram.PNG
-[ArchitectureDiagramEach-screenshot]: images\ArchitectureDiagramEach.PNG
 
 <p align="left">(<a href="#top">back to top</a>)</p>
 
@@ -170,5 +167,7 @@ Project Link: [https://github.com/gabgohkb/ETI_Assignment1.git](https://github.c
 [Passenger-screenshot]: images/passenger.PNG
 [TripPassenger-screenshot]: images/Ptrip.PNG
 [TripDriver-screenshot]: images/Dtrip.PNG
+[ArchitectureDiagram-screenshot]: images\ArchitectureDiagram.PNG
+[ArchitectureDiagramEach-screenshot]: images\ArchitectureDiagramEach.PNG
 
 
