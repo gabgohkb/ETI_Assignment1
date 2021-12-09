@@ -163,11 +163,11 @@ Project Link: [https://github.com/gabgohkb/ETI_Assignment1.git](https://github.c
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[Driver-screenshot]: images\driver.PNG
+[Driver-screenshot]: images/driver.PNG
 [Passenger-screenshot]: images/passenger.PNG
 [TripPassenger-screenshot]: images/Ptrip.PNG
 [TripDriver-screenshot]: images/Dtrip.PNG
-[ArchitectureDiagram-screenshot]: images\ArchitectureDiagram.PNG
-[ArchitectureDiagramEach-screenshot]: images\ArchitectureDiagramEach.PNG
+[ArchitectureDiagram-screenshot]: images/ArchitectureDiagram.PNG
+[ArchitectureDiagramEach-screenshot]: images/ArchitectureDiagramEach.PNG
 
 
