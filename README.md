@@ -65,6 +65,19 @@ Why 3 Microservice:
   * This allows each area of focus to be seperated in case if one microservice is required to be shut down for enhancement or errors the other microservices can still operate thus ensuring user experience from the running microservices. 
   * Example: If Trips microservice is shutdown, Driver and Passenger microservice will still allow the users to create  profiles, update and get personnal details. 
 
+Frontend: 
+  * Monolith Frontend
+
+Design Pattern used: 
+  * Decomposition: 
+    * Strategic Domain-Driven Design Result: 
+      * Accounts 
+      * Trips Management 
+    * Tactical Domain-Driven Design Identified Microservice: 
+      * Driver Microservice (Handle Functions: Create, Retrieve, Update Driver Account, Retrieve Current Trip)
+      * Passenger Microservice (Handle Functions: Create, Retrieve, Update Passenger Account, Retrieve List of Trips Taken)
+      * Trip Microservice (Handle Functions: Request Trip, Start Trip, End Trip, Update Account On Ride Status)
+
 <p align="left">(<a href="#top">back to top</a>)</p>
 
 To better understand, below is a diagram of the assignment's structure and how communications are made.
@@ -138,7 +151,7 @@ go run main.go T_Database_Func.go
 
 - [x] Backend using Golang
 - [x] Frontend using HTML JavaScript
-- [ ] Tidy up both backend and frontend
+- [x] Tidy up both backend and frontend
 
 <p align="left">(<a href="#top">back to top</a>)</p>
 
