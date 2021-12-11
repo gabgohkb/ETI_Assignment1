@@ -31,7 +31,7 @@ Passenger page for getting current status, viewing trips and requesting for trip
 Driver page for getting current status, starting and ending ride.
 [![Driver_Screen_Shot][driver-screenshot]]
 
-This assignment's requirements are to create 2 or more microservices which will be ran in the background while a frontend such as website can be used to interact with the functions in the microservices. 
+The Ride Share Assignment requires at least 2 microservices that is derived from applying the techniques of Decomposition using Strategic DDD and Tactical DDD. It also has an optional requirement for a frontend to be implemented. The following will explain what each of the microservices currently do, how is the services derieved and what frontend is being used together with a visual representation of the Microservices diagram. 
 
 There are a total of 3 microservices:
 (the functions will be shown in each microservice.)
@@ -66,7 +66,8 @@ Why 3 Microservice:
   * Example: If Trips microservice is shutdown, Driver and Passenger microservice will still allow the users to create  profiles, update and get personnal details. 
 
 Frontend: 
-  * Monolith Frontend
+  * Monolith Frontend:
+    * Above is chosen because this assignment's implementations will not be growing and it also shows how technologically agnostic the frontend, microservice and backend can be. 
 
 Design Pattern used: 
   * Decomposition: 
