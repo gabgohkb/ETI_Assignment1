@@ -34,27 +34,38 @@ Driver page for getting current status, starting and ending ride.
 The Ride Share Assignment requires at least 2 microservices that is derived from applying the techniques of Decomposition using Strategic DDD and Tactical DDD. It also has an optional requirement for a frontend to be implemented. The following will explain what each of the microservices currently do, how is the services derieved and what frontend is being used together with a visual representation of the Microservices diagram. 
 
 There are a total of 3 microservices:
-(the functions will be shown in each microservice.)
+(the functions and http method will be shown in each microservice.)
 1. Passenger
-  * Log in
-  * Update Passenger Details 
-  * Create Passenger
-  * Get Passenger Details 
-  * Delete will not be allowed (Error message will occur)
-  * View all trips (in reverse chronological order) 
+  * GET - Log in, Get Passenger Details 
+    * Example: "http://localhost:5000/Passengers/1"
+  * PUT - Update Passenger Details 
+    * Example: Update Passenger Act: curl -H "Content-Type: application/json" -X PUT http://localhost:5000/Passengers/{passengerid} -d "{\"fn\":\"jacob\",\"ln\":\"lim\",\"mn\":\"92323812\",\"ea\":\"jl@gmail.com\"}"
+  * POST - Create Passenger
+    * Example: Create Passenger Acct: curl -H "Content-Type: application/json" -X POST http://localhost:5000/Passengers/{passengerid} -d "{\"fn\":\"jacob\",\"ln\":\"lim\",\"mn\":\"92323812\",\"ea\":\"jl@gmail.com\"}"
+  * DELETE - Delete will not be allowed (Error message will occur)
+    * Example: curl -X DELETE http://localhost:5000/Passengers/1
+  * GET - View all trips (in reverse chronological order) 
+    * Example: http://localhost:5080/Passengers/1/Trip
 2. Trip
   * Updates OnRide status (Driver & Passenger)
-  * Request trip (Passenger)
+  * POST - Request trip (Passenger)
+    * Example: curl -H "Content-Type: application/json" -X POST http://localhost:5080/Passengers/1/Trip -d "{\"startpc\":\"670210\",\"endpc\":\"210999\",\"timestamp\":\"2021-11-23 17:59:59\",\"dID\":\"\",\"pID\":\"\",\"tripStatus\":\"\"}"
   * Retrieves trip details (Driver)
-  * Start ride (Driver)
-  * End ride (Driver)
+  * PUT - Start ride (Driver)
+    * curl -H "Content-Type: application/json" -X PUT http://localhost:5080/Drivers/1/Trip?action=startTrip
+  * PUT - End ride (Driver)
+    * curl -H "Content-Type: application/json" -X PUT http://localhost:5080/Drivers/1/Trip?action=endTrip
 3. Driver
-  * Log in
-  * Update Driver Details ('identificationNo' will not be allowed)
-  * Create Driver
-  * Get Driver Details 
-  * Delete will not be allowed (Error message will occur)
-  * View Current Trip 
+  * GET - Log in, Get Driver Details 
+    * Example: curl http://localhost:5050/Drivers/1
+  * PUT - Update Driver Details ('identificationNo' will not be allowed)
+    * Example: curl -H "Content-Type: application/json" -X PUT http://localhost:5050/Drivers/{driverid} -d "{\"fn\":\"jacob\",\"ln\":\"lim\",\"mn\":\"92323812\",\"ea\":\"jl@gmail.com\",\"cln\":\"s111fx\",\"idno\":\"s1010201F\"}"
+  * POST - Create Driver
+    * Example: curl -H "Content-Type: application/json" -X POST http://localhost:5050/Drivers/{driverid} -d "{\"fn\":\"jacob\",\"ln\":\"lim\",\"mn\":\"92323812\",\"ea\":\"jl@gmail.com\",\"cln\":\"sx234f\",\”idno\”:\”t0029201F\”}"
+  * DELETE - Delete will not be allowed (Error message will occur)
+    * Example: curl -X DELETE http://localhost:5050/Drivers/1
+  * GET - View Current Trip 
+    * Example: curl http://localhost:5050/Drivers/1
 
 ### Design Consideration of Microservices
 
