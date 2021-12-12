@@ -15,6 +15,7 @@ import (
 
 const baseURL = "http://localhost:"
 
+//Trip data structure
 type TripInfo struct {
 	StartPostalCode string `json:"startpc"`
 	EndPostalCode   string `json:"endpc"`
@@ -24,6 +25,7 @@ type TripInfo struct {
 	TripStatus      string `json:"tripStatus"`
 }
 
+//Check if Json from response body is valid
 func IsJsonValid(tempTrip TripInfo) bool {
 	valid := true
 
@@ -50,6 +52,7 @@ func getAdriver() string {
 	return "nil"
 }
 
+//Set passanger OnRide status
 func setDriverOnRideStatus(dID string) {
 	fmt.Println(dID)
 	response, err := http.Post(baseURL+"5050/Drivers/Trips/trip?dID="+dID, "application/json", nil)
@@ -63,6 +66,7 @@ func setDriverOnRideStatus(dID string) {
 	}
 }
 
+//Set passanger OnRide status
 func setPassengerOnRideStatus(pID string) {
 	fmt.Println(pID)
 	response, err := http.Post(baseURL+"5000/Passengers/"+pID+"/trips/OnRideStatus", "application/json", nil)
@@ -75,6 +79,8 @@ func setPassengerOnRideStatus(pID string) {
 		response.Body.Close()
 	}
 }
+
+//Function to handle API for Passenger trips
 func trip_Handler_Request(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	// Use mysql as driverName and a valid DSN as dataSourceName:
@@ -132,6 +138,7 @@ func trip_Handler_Request(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+//Function to handle API for driver trips
 func trip_Handler_driver(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	// Use mysql as driverName and a valid DSN as dataSourceName:
@@ -187,6 +194,7 @@ func trip_Handler_driver(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	if r.Method == "GET" {
+		//Getting driver's current trip assigned by the system
 		trip := GetDriverCurrentTrip(db, params["driverid"])
 		if trip.DriverID == "" {
 			w.WriteHeader(http.StatusNotFound)

@@ -47,10 +47,13 @@ There are a total of 3 microservices:
   * GET - View all trips (in reverse chronological order) 
     * Example: http://localhost:5080/Passengers/1/Trip
 2. Trip
-  * Updates OnRide status (Driver & Passenger)
+  * PUT (But Post was used to accomodate to golang) - Updates OnRide status (Driver & Passenger)
+    * "http://localhost:5050/Drivers/Trips/trip?dID={driverID}"
+    * "http://localhost:5000/Passengers/{passengerID}/trips/OnRideStatus"
   * POST - Request trip (Passenger)
     * Example: curl -H "Content-Type: application/json" -X POST http://localhost:5080/Passengers/1/Trip -d "{\"startpc\":\"670210\",\"endpc\":\"210999\",\"timestamp\":\"2021-11-23 17:59:59\",\"dID\":\"\",\"pID\":\"\",\"tripStatus\":\"\"}"
-  * Retrieves trip details (Driver)
+  * GET - Retrieve Available driver
+    * "http://localhost:5050/Drivers/Trips/trip"
   * PUT - Start ride (Driver)
     * curl -H "Content-Type: application/json" -X PUT http://localhost:5080/Drivers/1/Trip?action=startTrip
   * PUT - End ride (Driver)

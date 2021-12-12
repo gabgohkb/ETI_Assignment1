@@ -192,6 +192,8 @@ func driver_Handler(w http.ResponseWriter, r *http.Request) {
 	defer db.Close()
 	fmt.Println("Database opened")
 }
+
+//Driver communication with trips
 func Driver_Handler_Trips(w http.ResponseWriter, r *http.Request) {
 	// Use mysql as driverName and a valid DSN as dataSourceName:
 	db, err := sql.Open("mysql", "root:24A48g00@tcp(127.0.0.1:3306)/db_rideshare")

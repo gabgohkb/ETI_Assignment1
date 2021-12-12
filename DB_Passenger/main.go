@@ -196,6 +196,7 @@ func Passenger_Handler(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Database opened")
 }
 
+//Passenger communicate with trips
 func Passenger_Handler_Trips(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	// Use mysql as driverName and a valid DSN as dataSourceName:
